@@ -7,8 +7,15 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+  TransactionContext,
+  TransactionContextType,
+} from "../../contexts/TransactionContext";
 
 export const Header: FC = () => {
+  const { titleName, currentAccount } = React.useContext(
+    TransactionContext
+  ) as TransactionContextType;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -25,7 +32,10 @@ export const Header: FC = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Home
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {titleName}
+          </Typography>
+          <Button color="inherit">{currentAccount || "Login"}</Button>
         </Toolbar>
       </AppBar>
     </Box>
